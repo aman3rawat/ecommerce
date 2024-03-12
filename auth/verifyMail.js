@@ -1,10 +1,11 @@
-const { OTP, Admin } = require('../models');
+const { AuthToken, Admin } = require('../models');
 const { ApiError, mail } = require('../utils');
 
 module.exports = async function verifyMail(req, res, next) {
     const id = req.params.id;
     // const otp = req.query.otp;
-    const data = await OTP.findOne({ refId: id });
+    const data = await AuthToken.findOne({ refId: id });
+    console.log(data, id);
     if (!data) return next(new ApiError("Link is not generated, Please try again!"))
     if (data.expiresIn < Date.now()) return next(new ApiError("Link is expired, try again!"))
     // const isExist = await Admin.findOne({ userName });

@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
 const routers = require('./route/index');
-const { ApiError, errorHandler: globalErrorHandler } = require('./utils');
+const { ApiError } = require('./utils');
+const { errorHandler: globalErrorHandler } = require('./middleware');
 
 app.use(express.json());
 
 if (process.env.NODE_ENV === "DEVELOPMENT") {
     const morgan = require('morgan');
-    app.use(morgan("dev"));
+    app.use(morgan("combined"));
 }
 
 app.use("/api/v1", routers);

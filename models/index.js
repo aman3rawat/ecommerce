@@ -1,8 +1,8 @@
 const { Admin, User } = require('./admin');
-const OTP = require('./otp');
+const AuthToken = require('./authToken');
 
 module.exports = {
     Admin,
     User,
-    OTP
+    AuthToken
 }
